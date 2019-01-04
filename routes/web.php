@@ -22,3 +22,7 @@ Route::get('cek-adminlte', function () {
 Route::get('master/user', function () {
     return view('master.user');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
