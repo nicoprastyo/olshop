@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('cek-adminlte', function () {
+    return view('index');
+});
+
+Route::get('master/user', function () {
+    return view('master.user');
+});
