@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $users = [
-                'name' => 'admin',
+                'username' => 'admin',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('admin'),
                 'remember_token' => str_random(10),
@@ -23,6 +23,6 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert($users);
 
-        factory(App\User::class,50)->create();
+        factory(App\Models\User::class,60)->create();
     }
 }
