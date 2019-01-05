@@ -22,7 +22,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">{{ Auth::user()->username }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -30,8 +30,15 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Nico Prastyo
-                  <small>Member since Nov. 2012</small>
+                  {{ Auth::user()->username }}
+                  <small>Bergabung Sejak,
+                      
+                  @if( Auth::user()->created_at != null)
+                    {{ Auth::user()->created_at -> format('m')}},{{ Auth::user() -> created_at -> format('Y')}}
+                  @else
+                    -
+                  @endif
+                  </small>
                 </p>
               </li>
 
@@ -43,7 +50,16 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                      <span class="fa fa-sign-out"></span>Sign Out
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+                  <!-- <a href="#" class="btn btn-default btn-flat">Sign out</a> -->
                 </div>
               </li>
             </ul>
